@@ -1,0 +1,27 @@
+import java.sql.*;
+import java.util.Scanner;
+
+public class DeleteStudent {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter ID to Delete: ");
+        int id = sc.nextInt();
+
+        try {
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/college", "root", "password");
+
+            PreparedStatement ps =
+                con.prepareStatement("DELETE FROM student WHERE id=?");
+
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+            System.out.println("Record Deleted");
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
