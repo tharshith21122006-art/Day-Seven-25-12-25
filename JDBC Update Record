@@ -1,0 +1,32 @@
+import java.sql.*;
+import java.util.Scanner;
+
+public class UpdateStudent {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter ID: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Enter New Department: ");
+        String dept = sc.nextLine();
+
+        try {
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/college", "root", "password");
+
+            String query = "UPDATE student SET department=? WHERE id=?";
+            PreparedStatement ps = con.prepareStatement(query);
+
+            ps.setString(1, dept);
+            ps.setInt(2, id);
+
+            ps.executeUpdate();
+            System.out.println("Record Updated");
+
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+}
