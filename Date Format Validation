@@ -1,0 +1,19 @@
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+public class DateValidation {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Date (DD-MM-YYYY): ");
+        String date = sc.nextLine();
+
+        String regex = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}$";
+
+        if (Pattern.matches(regex, date)) {
+            System.out.println("Valid Date Format");
+        } else {
+            System.out.println("Invalid Date Format");
+        }
+    }
+}
