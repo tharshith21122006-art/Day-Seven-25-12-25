@@ -1,0 +1,19 @@
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+public class MobileValidation {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Mobile Number: ");
+        String mobile = sc.nextLine();
+
+        String regex = "^[6-9][0-9]{9}$";
+
+        if (Pattern.matches(regex, mobile)) {
+            System.out.println("Valid Mobile Number");
+        } else {
+            System.out.println("Invalid Mobile Number");
+        }
+    }
+}
