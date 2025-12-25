@@ -1,0 +1,21 @@
+import java.sql.*;
+
+public class SafeInsert {
+    public static void main(String[] args) {
+
+        try {
+            Connection con = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/college", "root", "password");
+
+            Statement st = con.createStatement();
+            st.executeUpdate(
+                "INSERT INTO student(name, department) VALUES ('Ravi', 'CSE')");
+
+            System.out.println("Inserted Successfully");
+
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Database Error Occurred");
+        }
+    }
+}
